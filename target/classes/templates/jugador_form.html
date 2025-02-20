@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${jugador.id} ? 'Editar Jugador' : 'Nuevo Jugador'"></title>
+</head>
+<body>
+    <h1 th:text="${jugador.id} ? 'Editar Jugador' : 'Nuevo Jugador'"></h1>
+
+    <form th:action="@{${jugador.id} ? '/jugador/actualizar/' + ${jugador.id} : '/jugador'}" th:object="${jugador}" method="post">
+        <label>Nombre: <input type="text" th:field="*{nombre}" required/></label><br>
+        <label>Ranking: <input type="number" th:field="*{ranking}" required/></label><br>
+        <label>Edad: <input type="number" th:field="*{edad}" required/></label><br>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="/jugador">Volver</a>
+</body>
+</html>
+
+

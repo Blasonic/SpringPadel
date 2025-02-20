@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${partido.id} ? 'Editar Partido' : 'Nuevo Partido'"></title>
+</head>
+<body>
+    <h1 th:text="${partido.id} ? 'Editar Partido' : 'Nuevo Partido'"></h1>
+
+    <form th:action="@{${partido.id} ? '/partido/actualizar/' + ${partido.id} : '/partido'}" th:object="${partido}" method="post">
+        <label>Fecha: <input type="date" th:field="*{fecha}" required/></label><br>
+        <label>Ubicación: <input type="text" th:field="*{ubicacion}" required/></label><br>
+        <label>Jugador: 
+            <select th:field="*{jugador.id}" required>
+                <option value="" disabled selected>Seleccione un jugador</option>
+                <option th:each="jugador : ${jugador}" th:value="${jugador.id}" th:text="${jugador.nombre}"></option>
+            </select>
+        </label><br>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="/partido">Volver</a>
+</body>
+</html>
+

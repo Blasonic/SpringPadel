@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Partidos</title>
+</head>
+<body>
+    <h1>Partidos</h1>
+    <a href="/partido/crear">Agregar Partido</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Ubicación</th>
+            <th>Jugador</th>
+            <th>Acciones</th>
+        </tr>
+        <tr th:each="partido : ${partido}">
+            <td th:text="${partido.id}"></td>
+            <td th:text="${partido.fecha}"></td>
+            <td th:text="${partido.ubicacion}"></td>
+            <td th:text="${partido.jugador.nombre}"></td>
+            <td>
+                <a th:href="@{/partido/editar/{id}(id=${partido.id})}">Editar</a> |
+                <a th:href="@{/partido/eliminar/{id}(id=${partido.id})}">Eliminar</a>
+            </td>
+        </tr>
+    </table>
+    <a href="/">Volver</a>
+</body>
+</html>
+
